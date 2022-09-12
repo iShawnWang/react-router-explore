@@ -5,8 +5,10 @@ import {
   Link
 } from "react-router-dom";
 import { Topics } from './Topics'
+import { Home } from './Home'
 
-function App() {
+export const App = () => {
+
   return (
     <Router>
       <div>
@@ -22,11 +24,9 @@ function App() {
         </nav>
 
         <Switch>
-          <Route path="/topics">
-            <Topics></Topics>
+          <Route path="/topics" key="topics" component={Topics}>
           </Route>
-          <Route path="/">
-            home
+          <Route path="/" key="/" component={Home}>
           </Route>
         </Switch>
       </div>

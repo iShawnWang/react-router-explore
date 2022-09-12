@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import { useEffect } from 'react'
 
-export function Topics() {
+export const Topics = () => {
   let { path, url } = useRouteMatch();
 
   useEffect(() => {
@@ -22,13 +22,13 @@ export function Topics() {
       <h2>Topics</h2>
       <ul>
         <li>
-          <Link to={`${url}/rendering`}>Rendering with React</Link>
+          <Link to={`${url}/nested1`}>Nested1</Link>
         </li>
         <li>
-          <Link to={`${url}/components`}>Components</Link>
+          <Link to={`${url}/nested2`}>Nested2</Link>
         </li>
         <li>
-          <Link to={`${url}/props-v-state`}>Props v. State</Link>
+          <Link to={`${url}/nested3`}>Nested3</Link>
         </li>
       </ul>
 
@@ -36,7 +36,7 @@ export function Topics() {
         <Route exact path={path}>
           <h3>Please select a topic.</h3>
         </Route>
-        <Route path={`${path}/:topicId`}>
+        <Route path={`${path}/:topicId`} key="topic">
           <Topic />
         </Route>
       </Switch>
@@ -44,13 +44,13 @@ export function Topics() {
   );
 }
 
-export function Topic() {
+export const Topic = () => {
   let { topicId } = useParams<{ topicId: string }>();
 
   useEffect(() => {
-    console.log(`Topic: ${topicId}`)
+    console.log(`Topic: ${topicId} prop mount`)
     return () => {
-      console.log(`Topic: ${topicId}`)
+      console.log(`Topic: ${topicId} prop unmount`)
     }
   }, [topicId])
 
